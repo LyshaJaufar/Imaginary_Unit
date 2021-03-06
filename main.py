@@ -36,21 +36,23 @@ def multipleOfFour():
 def calculatePower():
     if multipleOfFour() == False:
         powerOfSecondI = exponent % 4
+        powerOfFirstI = exponent - powerOfSecondI
         imaginaryUnit = powersOfI[powerOfSecondI]
-        
+        print("i**" + exponent + "= i**" + powerOfFirstI + " x i**" + powerOfSecondI)
+
     else:
         imaginaryUnit = 1
 
 
 
-def main():
-    if __name__ == '__main__':
-        if args.login == None:
-            logFileName = askToLogOrNot()
-        elif args.login[0].lower() != 'no' or args.login[0].lower() != n:
-            logFileName = args.login[0]
-        else:
-            logFileName = 'n'
+
+if __name__ == '__main__':
+    if args.login == None:
+        logFileName = askToLogOrNot()
+    elif args.login[0].lower() != 'no' or args.login[0].lower() != n:
+        logFileName = args.login[0]
+    else:
+        logFileName = 'n'
 
         """
         if multipleOfFour() == True:
@@ -59,4 +61,6 @@ def main():
             print("false")
         """
 
-main()
+
+powerOfImaginaryUnit()
+multipleOfFour()
