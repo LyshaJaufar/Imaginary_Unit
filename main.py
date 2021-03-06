@@ -34,24 +34,32 @@ def multipleOfFour():
         return False
 
 def calculatePower():
-    if multipleOfFour() == False:
-        powerOfSecondI = exponent % 4
-        powerOfFirstI = exponent - powerOfSecondI
+    checkIfMultiple = multipleOfFour()
+    powerOfSecondI = exponent % 4
+    powerOfFirstI = exponent - powerOfSecondI
+
+
+
+    if exponent < 4:
         imaginaryUnit = powersOfI[powerOfSecondI]
+        print("\ni**" + str(exponent) + " = " + str(imaginaryUnit) + "\n")
+
+    elif checkIfMultiple == True:
+        imaginaryUnit = 1
         expandingFirstPower = powerOfFirstI // 4
-
-        if exponent < 4:
-            print("i**" + str(exponent) + " = " + str(imaginaryUnit))
-
-        else:
-            print("i**" + str(exponent) + " = i**" + str(powerOfFirstI) + " x i**" + str(powerOfSecondI))
-            print("i**" + str(exponent) + " = (i**4)**" + str(expandingFirstPower) + " x i**" + str(powerOfSecondI))
-            print("i**" + str(exponent) + " = (1)**" + str(expandingFirstPower) + " x i**" + str(powerOfSecondI))
-            print("i**" + str(exponent) + " = 1 " + "x " + imaginaryUnit)
-            print("i**" + str(exponent) + " = " + imaginaryUnit)
+        print("\ni**" + str(exponent) + " = (i**4)**" + str(expandingFirstPower))
+        print("i**" + str(exponent) + " = (1)**" + str(expandingFirstPower))
+        print("i**" + str(exponent) + " = 1" + "\n")
 
     else:
-        imaginaryUnit = 1
+        imaginaryUnit = powersOfI[powerOfSecondI]
+        expandingFirstPower = powerOfFirstI // 4
+        print("\ni**" + str(exponent) + " = i**" + str(powerOfFirstI) + " x i**" + str(powerOfSecondI))
+        print("i**" + str(exponent) + " = (i**4)**" + str(expandingFirstPower) + " x i**" + str(powerOfSecondI))
+        print("i**" + str(exponent) + " = (1)**" + str(expandingFirstPower) + " x i**" + str(powerOfSecondI))
+        print("i**" + str(exponent) + " = 1 " + "x " + imaginaryUnit)
+        print("i**" + str(exponent) + " = " + imaginaryUnit + "\n")
+
 
 
 
@@ -72,4 +80,4 @@ if __name__ == '__main__':
         """
 
 calculatePower()
-multipleOfFour()
+
