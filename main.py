@@ -38,7 +38,17 @@ def calculatePower():
         powerOfSecondI = exponent % 4
         powerOfFirstI = exponent - powerOfSecondI
         imaginaryUnit = powersOfI[powerOfSecondI]
-        print("i**" + exponent + "= i**" + powerOfFirstI + " x i**" + powerOfSecondI)
+        expandingFirstPower = powerOfFirstI // 4
+
+        if exponent < 4:
+            print("i**" + str(exponent) + " = " + str(imaginaryUnit))
+
+        else:
+            print("i**" + str(exponent) + " = i**" + str(powerOfFirstI) + " x i**" + str(powerOfSecondI))
+            print("i**" + str(exponent) + " = (i**4)**" + str(expandingFirstPower) + " x i**" + str(powerOfSecondI))
+            print("i**" + str(exponent) + " = (1)**" + str(expandingFirstPower) + " x i**" + str(powerOfSecondI))
+            print("i**" + str(exponent) + " = 1 " + "x " + imaginaryUnit)
+            print("i**" + str(exponent) + " = " + imaginaryUnit)
 
     else:
         imaginaryUnit = 1
@@ -61,6 +71,5 @@ if __name__ == '__main__':
             print("false")
         """
 
-
-powerOfImaginaryUnit()
+calculatePower()
 multipleOfFour()
