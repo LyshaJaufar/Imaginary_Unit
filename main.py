@@ -15,7 +15,7 @@ args = parser.parse_args()
 print("\nThe following is a program that calculates a given power of the imaginary unit i")
 
 def main():
-    global exponent, logFileName
+    global exponent, logFileName, starttime
     if __name__ == '__main__':
         if args.power == None:
             exponent = powerOfImaginaryUnit()
@@ -28,29 +28,34 @@ def main():
             logFileName = args.login[0]
         else:
             logFileName = 'n'
-
+    starttime = time.time()
 
 def calculatePower():
-    global checkIfMultiple, powerOfSecondI, powerOfFirstI, imaginaryUnit, expandingFirstPower
+    global checkIfMultiple, powerOfSecondI, powerOfFirstI, imaginaryUnit, expandingFirstPower, elapsedtime
     checkIfMultiple = multipleOfFour()
     powerOfSecondI = exponent % 4
     powerOfFirstI = exponent - powerOfSecondI
 
+    elapsedtime = str(datetime.timedelta(seconds=round(time.time()-starttime, 2)))
+    elapsedtime = elapsedtime[:-4]
+
+    print('\n\n')
+    print("Total execution time:", elapsedtime)
     if exponent < 4:
         imaginaryUnit = powersOfI[powerOfSecondI]
-        print("\ni**" + str(exponent) + " = " + str(imaginaryUnit) + "\n")
+        print("i**" + str(exponent) + " = " + str(imaginaryUnit) + "\n")
 
     elif checkIfMultiple == True:
         imaginaryUnit = 1
         expandingFirstPower = powerOfFirstI // 4
-        print("\ni**" + str(exponent) + " = (i**4)**" + str(expandingFirstPower))
+        print("i**" + str(exponent) + " = (i**4)**" + str(expandingFirstPower))
         print("i**" + str(exponent) + " = (1)**" + str(expandingFirstPower))
         print("i**" + str(exponent) + " = 1" + "\n")
 
     else:
         imaginaryUnit = powersOfI[powerOfSecondI]
         expandingFirstPower = powerOfFirstI // 4
-        print("\ni**" + str(exponent) + " = i**" + str(powerOfFirstI) + " x i**" + str(powerOfSecondI))
+        print("i**" + str(exponent) + " = i**" + str(powerOfFirstI) + " x i**" + str(powerOfSecondI))
         print("i**" + str(exponent) + " = (i**4)**" + str(expandingFirstPower) + " x i**" + str(powerOfSecondI))
         print("i**" + str(exponent) + " = (1)**" + str(expandingFirstPower) + " x i**" + str(powerOfSecondI))
         print("i**" + str(exponent) + " = 1 " + "x " + imaginaryUnit)
@@ -61,6 +66,7 @@ def outputLogFile():
     if logFileName.lower() != 'n':
         logfile = open(os.getcwd() + '/' + logFileName, 'w')
 
+        logfile.write("Total execution time: " + str(elapsedtime) + "\n")
         if exponent < 4:
             logfile.write("i**" + str(exponent) + " = " + str(imaginaryUnit) + "\n")
 
