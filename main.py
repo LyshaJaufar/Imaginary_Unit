@@ -15,7 +15,7 @@ args = parser.parse_args()
 print("\nThe following is a program that calculates a given power of the imaginary unit i")
 
 def main():
-    global exponent
+    global exponent, logFileName
     if __name__ == '__main__':
         if args.power == None:
             exponent = powerOfImaginaryUnit()
@@ -57,6 +57,31 @@ def calculatePower():
         print("i**" + str(exponent) + " = " + imaginaryUnit + "\n")
 
 
+def outputLogFile():
+    if logFileName.lower() != 'n':
+        logfile = open(os.getcwd() + '/' + logFileName, 'w')
+
+        if exponent < 4:
+            logfile.write("i**" + str(exponent) + " = " + str(imaginaryUnit) + "\n")
+
+        elif checkIfMultiple == True:
+            logfile.write("i**" + str(exponent) + " = (i**4)**" + str(expandingFirstPower) + "\n")
+            logfile.write("i**" + str(exponent) + " = (1)**" + str(expandingFirstPower) + "\n")
+            logfile.write("i**" + str(exponent) + " = 1" + "\n")
+        
+        else:
+            logfile.write("i**" + str(exponent) + " = i**" + str(powerOfFirstI) + " x i**" + str(powerOfSecondI) + "\n")
+            logfile.write("i**" + str(exponent) + " = (i**4)**" + str(expandingFirstPower) + " x i**" + str(powerOfSecondI) + "\n")
+            logfile.write("i**" + str(exponent) + " = (1)**" + str(expandingFirstPower) + " x i**" + str(powerOfSecondI) + "\n")
+            logfile.write("i**" + str(exponent) + " = 1 " + "x " + imaginaryUnit + "\n")
+            logfile.write("i**" + str(exponent) + " = " + imaginaryUnit + "\n")
+
+        logfile.close()
+        print("A logfile was published to ", os.getcwd()+'/'+logFileName)
+    
+    else:
+        print("No log created")
+
         
 def askToLogOrNot():
     logFileYesOrNo = input("Would you like to save a logfile? ")
@@ -81,4 +106,4 @@ def multipleOfFour():
 
 main()
 calculatePower()
-
+outputLogFile()
