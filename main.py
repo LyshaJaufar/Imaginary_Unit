@@ -1,5 +1,12 @@
 import os, time, datetime, argparse, re
 
+powersOfI = {
+    1 : "i",
+    2 : "-1",
+    3 : "-i"
+}
+
+
 parser = argparse.ArgumentParser(description="Calculate a given power of the imaginary unit i")
 parser.add_argument('-l', '--login', type=int, help='Name of logfile', nargs=1)
 args = parser.parse_args()
@@ -19,13 +26,22 @@ def powerOfImaginaryUnit():
     return imaginaryUnitPower
 
 def multipleOfFour():
+    global exponent
     exponent = powerOfImaginaryUnit()
     if (exponent % 4) == 0:
-        pass
+        return True
     else: 
+        return False
+
+def calculatePower():
+    if multipleOfFour() == False:
         powerOfSecondI = exponent % 4
-        if powerOfSecondI == 3:
-            
+        imaginaryUnit = powersOfI[powerOfSecondI]
+        
+    else:
+        imaginaryUnit = 1
+
+
 
 def main():
     if __name__ == '__main__':
@@ -36,5 +52,11 @@ def main():
         else:
             logFileName = 'n'
 
+        """
+        if multipleOfFour() == True:
+            print("true")
+        else:
+            print("false")
+        """
 
 main()
