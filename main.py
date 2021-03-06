@@ -8,13 +8,20 @@ powersOfI = {
 
 
 parser = argparse.ArgumentParser(description="Calculate a given power of the imaginary unit i")
-parser.add_argument('-l', '--login', type=int, help='Name of logfile', nargs=1)
+parser.add_argument('-l', '--login', help='Name of logfile', nargs=1)
+parser.add_argument('-p', '--power',help='Value of the exponent of you which the imaginary unit is raised to')
 args = parser.parse_args()
 
 print("\nThe following is a program that calculates a given power of the imaginary unit i")
 
 def main():
+    global exponent
     if __name__ == '__main__':
+        if args.power == None:
+            exponent = powerOfImaginaryUnit()
+        else:
+            exponent = int(args.power)
+
         if args.login == None:
             logFileName = askToLogOrNot()
         elif args.login[0].lower() != 'no' or args.login[0].lower() != n:
@@ -49,28 +56,6 @@ def calculatePower():
         print("i**" + str(exponent) + " = 1 " + "x " + imaginaryUnit)
         print("i**" + str(exponent) + " = " + imaginaryUnit + "\n")
 
-def outputLogFile():
-	if logFileName.lower() != "n":
-		logfile = open(os.getcwd()+'/'+logFileName, 'w')
-
-		logfile.write("\ni**" + str(exponent) + " = " + str(imaginaryUnit) + "\n")
-
-
-        logfile.write("\ni**" + str(exponent) + " = (i**4)**" + str(expandingFirstPower) + "\n")
-        logfile.write("i**" + str(exponent) + " = (1)**" + str(expandingFirstPower) + "\n")
-        logfile.write("i**" + str(exponent) + " = 1" + "\n")
-
- 
-        logfile.write("\ni**" + str(exponent) + " = i**" + str(powerOfFirstI) + " x i**" + str(powerOfSecondI) + "\n")
-        logfile.write("i**" + str(exponent) + " = (i**4)**" + str(expandingFirstPower) + " x i**" + str(powerOfSecondI) + "\n")
-        logfile.write("i**" + str(exponent) + " = (1)**" + str(expandingFirstPower) + " x i**" + str(powerOfSecondI) + "\n")
-        logfile.write("i**" + str(exponent) + " = 1 " + "x " + imaginaryUnit + "\n")
-        logfile.write("i**" + str(exponent) + " = " + imaginaryUnit + "\n")
-
-		logfile.close()
-		print("A logfile was published to ", os.getcwd()+'/'+logFileName)
-	else:
-		print("No log created.")
 
         
 def askToLogOrNot():
@@ -88,8 +73,6 @@ def powerOfImaginaryUnit():
 
 
 def multipleOfFour():
-    global exponent
-    exponent = powerOfImaginaryUnit()
     if (exponent % 4) == 0:
         return True
     else: 
