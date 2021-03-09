@@ -1,6 +1,10 @@
 import os, time, datetime, argparse, re
 
 powersOfI = {
+    -3 : "i",
+    -2 : "1",
+    -1 : "-i",
+    0 : "0",
     1 : "i",
     2 : "-1",
     3 : "-i"
@@ -41,7 +45,7 @@ def calculatePower():
 
     print('\n\n')
     print("Total execution time:", elapsedtime)
-    if exponent < 4:
+    if exponent < 4 and exponent > -4:
         imaginaryUnit = powersOfI[powerOfSecondI]
         print("i**" + str(exponent) + " = " + str(imaginaryUnit) + "\n")
 
